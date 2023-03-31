@@ -55,7 +55,7 @@ module.exports = function () {
     router.post('/pedidos/nuevo/:idUsuario', pedidosController.nuevoPedido);
 
     //Mostrar todos los pedidos
-    router.get('/pedidos', auth, pedidosController.traerPedidos);
+    router.get('/pedidos', pedidosController.traerPedidos);
 
     //Mostar un pedido por ID
     router.get('/pedidos/:idPedido', auth, pedidosController.traerPedido);
@@ -67,7 +67,7 @@ module.exports = function () {
     router.delete('/pedidos/:idPedido', auth,  pedidosController.eliminarPedido);
 
     //Usuarios
-    router.post('/crear-cuenta', auth, usuarioController.registrarUsuario)
+    router.post('/crear-cuenta', usuarioController.registrarUsuario)
 
     router.post('/iniciar-sesion', usuarioController.autenticarUsuario )
 
