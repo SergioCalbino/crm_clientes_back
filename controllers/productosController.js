@@ -130,10 +130,10 @@ exports.eliminarProducto = async (req, res, next) => {
 
   exports.buscarProducto = async (req, res, next) => {
 
-        const { query } = req.params
-         console.log(req.params)
     try {
-      const producto = await Productos.find({nombre: new RegExp(query, 'i')})
+        const { query } = req.params
+        console.log(req.params)
+      const producto = await Productos.find({ nombre: new RegExp(query, 'i')})
       res.json(producto)
       
     } catch (error) {

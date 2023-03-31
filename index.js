@@ -25,24 +25,20 @@ app.use(bodyParser.urlencoded({ extended:true }))
 
 //Defini un dominio(s) para recibir las peticiones
 
-const whiteList = [process.env.FRONTEND_URL]
-console.log(process.env.FRONTEND_URL)
-const corsOption = {
-    origin: (origin, callback) => {
-        //Revisar si la peticion viene de un servidor que esta en la lista blanca
-        const existe = whiteList.some( dominio => dominio === origin )
-        if (existe) {
+const dominiosPertmitidos = [process.env.FRONTEND_URL]
+
+const corsOptions = {
+    origin: function(origin, callback) {
+        if (dominiosPertmitidos.indexOf(origin) !== -1) {
+            //El origen del request esta permitido
             callback(null, true)
-            
         } else {
-            callback(new Error('No Permitido por Cors'))
+            callback(new Error('No permitido por CORS'))
         }
     }
 }
 
-//habilitar cors
-
-app.use(cors(corsOption))
+app.use(cors(corsOptions))
 //Rutas de la app
 app.use('/', routes())
 

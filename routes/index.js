@@ -48,11 +48,11 @@ module.exports = function () {
     router.delete('/productos/:idProducto',auth, productosController.eliminarProducto )
 
     //Busqueda de productos
-    router.post('/productos/busqueda/:query', auth, productosController.buscarProducto)
+    router.post('/productos/busqueda/:query', productosController.buscarProducto)
 
     //***PEDIDOS* */
     //Crear pedido
-    router.post('/pedidos', pedidosController.nuevoPedido);
+    router.post('/pedidos/nuevo/:idUsuario', pedidosController.nuevoPedido);
 
     //Mostrar todos los pedidos
     router.get('/pedidos', auth, pedidosController.traerPedidos);
